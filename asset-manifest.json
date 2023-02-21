@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/flipclock/static/css/main.6bffb187.css",
+    "main.js": "/flipclock/static/js/main.ed582a75.js",
+    "static/js/787.de67d7e7.chunk.js": "/flipclock/static/js/787.de67d7e7.chunk.js",
+    "static/media/moon.png": "/flipclock/static/media/moon.cfa37b178f3890f6d652.png",
+    "static/media/sun.png": "/flipclock/static/media/sun.e084c7323a6f30ebee93.png",
+    "static/media/plus.png": "/flipclock/static/media/plus.18b82d15865e06b45626.png",
+    "static/media/minus.png": "/flipclock/static/media/minus.d706541778777ff838d4.png",
+    "index.html": "/flipclock/index.html",
+    "main.6bffb187.css.map": "/flipclock/static/css/main.6bffb187.css.map",
+    "main.ed582a75.js.map": "/flipclock/static/js/main.ed582a75.js.map",
+    "787.de67d7e7.chunk.js.map": "/flipclock/static/js/787.de67d7e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6bffb187.css",
+    "static/js/main.ed582a75.js"
+  ]
+}
