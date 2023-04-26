@@ -2,11 +2,18 @@ import React from 'react'
 import Flip from './Flip'
 import { useEffect, useState } from 'react';
 import { HandleTime } from '../context/Context'
-const Main = () => {
+import alarms from '../sounds/alarm.mp3'
+const Main = (props) => {
+  const { sound, setsound } = HandleTime();
+  const alarmsound = new Audio(alarms);
+  alarmsound.load();
+  alarmsound.muted = false;
+  alarmsound.loop = false;
+  alarmsound.volume = 0.3;
+  
   const [main, setmain] = useState({
     width: '460px',
     height: '350px',
-    
     marginTop: '80px',
     display: 'flex',
     alignItems: 'center',
@@ -15,9 +22,24 @@ const Main = () => {
     opacity: 1,
     animation: 'none'
   });
-  const { Switch, seconds, minutes, hour, alarm } = HandleTime();
+  const PlayAlarm = () => {
+    alarmsound.play();
+  }
   useEffect(() => {
-    alarm? setmain({...main,animation:'alarm 0.8s infinite'}) :setmain({...main,animation:'none'})
+    if(props.sound){
+      setsound(true);
+    }else{
+      setsound(false)
+    }
+  }, [props.sound]);
+
+  const { seconds, minutes, hour, alarm } = HandleTime();
+  useEffect(() => {
+    if (sound) {
+      PlayAlarm();
+    }
+
+    alarm ? setmain({ ...main, animation: 'alarm 0.8s infinite' }) : setmain({ ...main, animation: 'none' })
   }, [alarm]);
 
   return (

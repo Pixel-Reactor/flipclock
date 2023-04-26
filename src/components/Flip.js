@@ -1,10 +1,18 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import plus from '../img/plus.png'
-import minus from '../img/minus.png'
 import {HandleTime} from '../context/Context'
+import flipaudio from '../sounds/pageturn.wav'
 const Flip = (props) => {
-    const {setminutes,setseconds,sethour,Type,seconds,minutes,hour,startstop,alarm,setalarm} = HandleTime();
+    const {sound} = HandleTime();
+
+    const flipsound = new Audio(flipaudio);
+    flipsound.load();
+    flipsound.muted=false;
+    flipsound.loop=false;
+    flipsound.volume=0.3;
+  
+    const {setminutes,setseconds,sethour,Type,seconds,minutes,hour,startstop,alarm} = HandleTime();
     const [disable, setdisable] = useState(false);
     const [cont, setcont] = useState(props.time);
     const [pup, setpup] = useState({
@@ -35,7 +43,7 @@ const Flip = (props) => {
         borderTopRightRadius:'25px',
 
     });
-    const [Fub, setFub] = useState({
+    const [Fub] = useState({
         width: '120px',
         height: '100px',
         position: 'absolute',
@@ -54,14 +62,13 @@ const Flip = (props) => {
         borderTopRightRadius:'25px',
         
     });
-    const [Fd, setFd] = useState({
+    const [Fd] = useState({
         width: '120px',
         height: '100px',
         position: 'absolute',
         border: '1px solid  rgb(68, 68, 68)',
         top: '102px',
         backgroundColor: 'rgb(30, 30, 30)',
-        color: 'white',
         color: 'white',
         display: 'flex',
         justifyContent: 'center',
@@ -74,7 +81,7 @@ const Flip = (props) => {
         borderBottomRightRadius:'25px',
         boxShadow: 'rgba(240, 240, 240, 0.35) 0px -50px 36px -28px inset',
     });
-    const [Fdb, setFdb] = useState({
+    const [Fdb] = useState({
         width: '120px',
         height: '100px',
         position: 'absolute',
@@ -95,7 +102,8 @@ const Flip = (props) => {
     
     const [HandleBtn, setHandleBtn] = useState({
         transition:'all 0.5s',
-        opacity:'0'
+        opacity:'0',
+        
        });
   
    useEffect(() => {
@@ -110,11 +118,16 @@ const Flip = (props) => {
         setcont(props.time)
         setFu({ ...Fu,transition:'all 0.3s', transform: 'rotate3d(-1, 0, 0, 180deg) translateY(-0.3px)',backgroundColor:'rgb(30, 30, 30)' })
        const timer= setTimeout(() => {
+        if(sound){
+            flipsound.play()
+        }
+        
             setpup({...pup,transform:'translateY(50px) rotateX(180deg)',color:'rgb(225, 225, 225)'})
         }, 100);
         setTimeout(() => {
             setFu({ ...Fu,transition:'none', transform: 'rotate3d(-1, 0, 0, 0deg)',backgroundColor:'rgb(20, 20, 20)' })
-            setpup({...pup,transform:'translateY(50px) rotateX(0deg)',color:'white'})
+            setpup({...pup,transform:'translateY(50px) rotateX(0deg)',color:'white'});
+           
         }, 500);
         
     }, [props.time]);
@@ -136,6 +149,14 @@ const Flip = (props) => {
 
         props.type === 'SECONDS'? setseconds(seconds +1) : props.type === 'MINUTES'? setminutes(minutes+1) : sethour(hour+1) 
     }
+    const HandleCountDownPlusFive = () =>{
+        setdisable(true)
+        setTimeout(() => {
+            setdisable(false)
+        }, 500);
+
+        props.type === 'SECONDS'? setseconds(seconds +5) : props.type === 'MINUTES'? setminutes(minutes+5) : sethour(hour+5) 
+    }
    
     const HandleCountDownMinus = () =>{
         setdisable(true)
@@ -144,10 +165,20 @@ const Flip = (props) => {
         }, 500);
         props.type === 'SECONDS' && seconds > 0? setseconds(seconds -1) : props.type === 'MINUTES' && minutes > 0? setminutes(minutes -1) : props.type === 'HOURS'&& hour >0? sethour(hour-1) : alert('Can not set a time value below 0!')
     }
+    const HandleCountDownMinusFive = () =>{
+        setdisable(true)
+        setTimeout(() => {
+            setdisable(false)
+        }, 500);
+        props.type === 'SECONDS' && seconds >=5? setseconds(seconds -5) : props.type === 'MINUTES' && minutes >=5? setminutes(minutes -5) : props.type === 'HOURS'&& hour >=5? sethour(hour-5) : alert('Can not set a time value below 0!')
+    }
     return (
         <>
         <div className='flipbox'>
-            <div style={HandleBtn}>  <button className='setbtn' disabled={disable} onClick={HandleCountDownPlus}><img width={'40px'} src={plus} /></button></div>
+            <div style={HandleBtn} className='fxcntcnt'>  
+            <button className='setbtn' disabled={disable} onClick={HandleCountDownPlus}><img width={'40px'} src={plus} /></button>
+            <button className='setbtnfive' disabled={disable} onClick={HandleCountDownPlusFive}><p>+5</p></button>
+            </div>
           
         <div className='flipcnt'>
         
@@ -158,7 +189,15 @@ const Flip = (props) => {
            
             
         </div>
-        <div style={HandleBtn}>  <button  className='setbtn' disabled={disable} onClick={HandleCountDownMinus} ><img width={'40px'} src={minus} /></button></div>
+        <div style={HandleBtn} className='fxcntcnt'> 
+         <button  className='setbtnfivemin' disabled={disable} onClick={HandleCountDownMinus} >
+           <p>-</p>
+         </button>
+            <button  className='setbtnfive' disabled={disable} onClick={HandleCountDownMinusFive} >
+            -5
+            </button>
+            </div>
+            
         <p className='flipboxp'>{props.type}</p>
        
       
