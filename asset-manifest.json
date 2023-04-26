@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/flipclock/static/css/main.6bffb187.css",
-    "main.js": "/flipclock/static/js/main.ed582a75.js",
+    "main.css": "/flipclock/static/css/main.820901d8.css",
+    "main.js": "/flipclock/static/js/main.b031dc00.js",
     "static/js/787.de67d7e7.chunk.js": "/flipclock/static/js/787.de67d7e7.chunk.js",
+    "static/media/alarm.mp3": "/flipclock/static/media/alarm.6c19b7b9a533c76b395a.mp3",
+    "static/media/pageturn.wav": "/flipclock/static/media/pageturn.f0dba329b4bc6211f4dc.wav",
     "static/media/moon.png": "/flipclock/static/media/moon.cfa37b178f3890f6d652.png",
     "static/media/sun.png": "/flipclock/static/media/sun.e084c7323a6f30ebee93.png",
     "static/media/plus.png": "/flipclock/static/media/plus.18b82d15865e06b45626.png",
-    "static/media/minus.png": "/flipclock/static/media/minus.d706541778777ff838d4.png",
+    "static/media/sound.png": "/flipclock/static/media/sound.f096ee18c920888836dc.png",
     "index.html": "/flipclock/index.html",
-    "main.6bffb187.css.map": "/flipclock/static/css/main.6bffb187.css.map",
-    "main.ed582a75.js.map": "/flipclock/static/js/main.ed582a75.js.map",
+    "main.820901d8.css.map": "/flipclock/static/css/main.820901d8.css.map",
+    "main.b031dc00.js.map": "/flipclock/static/js/main.b031dc00.js.map",
     "787.de67d7e7.chunk.js.map": "/flipclock/static/js/787.de67d7e7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6bffb187.css",
-    "static/js/main.ed582a75.js"
+    "static/css/main.820901d8.css",
+    "static/js/main.b031dc00.js"
   ]
 }
